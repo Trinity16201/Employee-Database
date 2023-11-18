@@ -1,8 +1,8 @@
 INSERT INTO departments (name)
-VALUES ("Hematology"),
-       ("Chemistry"),
-       ("Urinalysis"),
-       ("Cytology");
+VALUES (1, "Hematology"),
+       (2, "Chemistry"),
+       (1, "Urinalysis"),
+       (3, "Cytology");
 
 INSERT INTO roles (title, salary, department_id)
 VALUES ("Technician", 30000, 1),
