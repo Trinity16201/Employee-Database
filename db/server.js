@@ -10,6 +10,10 @@ const connection = mysql.createConnection({
     password: 'Matrix04!',
     database: 'department_db'
 })
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
 function start() {
     inquirer
         .prompt({
@@ -146,3 +150,6 @@ function updateEmployeeRole() {
         start();
     })
 }
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
