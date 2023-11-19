@@ -1,30 +1,30 @@
-DROP DATABASE IF EXISTS department_db;
-CREATE DATABASE department_db;
+DROP DATABASE IF EXISTS tracker_db;
+CREATE DATABASE tracker_db;
 
-USE department_db;
+USE tracker_db;
 
 CREATE TABLE departments (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30) NOT NULL,
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30) UNIQUE NOT NULL
 );
 
 CREATE TABLE roles (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(30) NOT NULL,
-  salary DECIMAL,
-  departments_id INT,
-  FOREIGN KEY (departments_id)
-  REFERENCES departments(id)
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(30) UNIQUE NOT NULL,
+  salary DECIMAL UNSIGNED NOT NULL,
+  departments_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (departments_id),
+  REFERENCES departments(id),
   ON DELETE SET NULL
 );
 
 CREATE TABLE employees (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(30) NOT NULL,
-  last_name VARCHAR(30) NOT NULL,
-  role_id INT,
-  manager_id INT,
-  FOREIGN KEY (role_id)
-  REFERENCES departments(id)
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(30) UNIQUE NOT NULL,
+  last_name VARCHAR(30) UNIQUE NOT NULL,
+  role_id INT UNSIGNED NOT NULL,
+  manager_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (role_id),
+  REFERENCES departments(id),
   ON DELETE SET NULL
 );
