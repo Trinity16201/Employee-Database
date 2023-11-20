@@ -64,7 +64,7 @@ function viewAllDepartments() {
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
-        start();
+        deptQuery();
     })
 }
 
@@ -73,7 +73,7 @@ function viewAllRoles() {
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
-        start();
+        viewAllRoles();
     })
 }
 function viewAllEmployees() {
@@ -81,7 +81,7 @@ function viewAllEmployees() {
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
-        start();
+        viewAllEmployees();
     })
 }
 function addARole() {
@@ -108,7 +108,7 @@ function addARole() {
 connection.query(query, (err, res) => {
     if (err) throw err;
     console.table(res);
-    start();
+    addARole();
 })
 }
 function addEmployee() {
@@ -139,7 +139,7 @@ function addEmployee() {
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
-        start();
+        addEmployee();
     })
 }
 function updateEmployeeRole() {
@@ -147,7 +147,7 @@ function updateEmployeeRole() {
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
-        start();
+        updateEmployeeRoleQuery();
     })
 }
 app.listen(PORT, () => {
