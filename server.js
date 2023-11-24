@@ -114,32 +114,28 @@ function addADepartment() {
       });
     });
 }
+
 function addARole() {
-  const sql2 = "SELECT * FROM departments";
-  connection.query(sql2, (err, res) => {
-    departmentList = response.map((departments) => ({
-      name: departments.name,
-      value: departments.id,
-    }));
-    return inquirer.prompt([
+    inquirer
+      .prompt([
         {
           type: "input",
           name: "title",
-          message: "What is the name of the role?",
+          message: "What is the title of this new role?",
         },
         {
-          type: "input",
-          name: "salary",
-          message: "What is the salary of this role?",
-        },
-        {
-          type: "input",
-          name: "department",
-          message: "Which deparment will this role be in?",
-          choices: departmentList,
-        },
-      ]).then((answer) => {
-        const insertRole = `INSERT INTO roles SET title = ('${answer.title}', salary = ${answer.salary}, departments_id = ${answer.departments});`;
+            type: "input",
+            name: "salary",
+            message: "What is salary?",
+          },
+          {
+            type: "input",
+            name: "department",
+            message: "What is the department id?",
+          },
+      ])
+      .then((answer) => {
+        const insertRole = `INSERT INTO roles(title, salary, department_id) VALUES ('${answer.title}, ${answer.salary}, ${answer.department}');`;
         connection.query(insertRole, (err, res) => {
           if (err) {
             console.log(err);
@@ -149,8 +145,8 @@ function addARole() {
           start();
         });
       });
-  });
-}
+  }
+
 function addEmployee() {
   const addEmployeeQuery = inquirer
     .prompt({
@@ -166,12 +162,12 @@ function addEmployee() {
     .prompt({
       type: "input",
       name: "role_id",
-      message: "Please enter the role id.",
+      message: "Please enter the role id as a number.",
     })
     .prompt({
       type: "input",
       name: "manager id",
-      message: "Please enter the manager id. Example: Frontline",
+      message: "Please enter the manager id as a number",
     });
 
   connection.query(query, (err, res) => {
