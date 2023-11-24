@@ -204,7 +204,6 @@ function updateEmployeeRole() {
   const employeeList = "SELECT * FROM employees";
   connection.query(employeeList, (err, res) => {
     const employees = res.map((employees) => {
-      console.log(employees);
       return {
         name: employees.first_name + " " + employees.last_name,
         value: employees.id,
