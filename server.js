@@ -203,18 +203,25 @@ function addEmployee() {
 function updateEmployeeRole() {
     const employeeList = "SELECT * FROM employees";
     connection.query(employeeList, (err, res) => {
-        employeeList = response.map(employees => ({
-            name: employees.first_name.concat(" ", employees.last_name),
-            value: employees.id
-        }));
-    })
-    return inquirer
+        const employees = res.map((employees) => {
+            console.log(employees);
+            return {
+                name: employees.first_name + " " + employees.last_name,
+                value: employees.id,
+            };
+        })
+        // employeeList = res.map(employees => ({
+        //     name: employees.first_name.concat(" ", employees.last_name),
+        //     value: employees.id
+        // }));
+   
+    inquirer
     .prompt([
       {
         type: "list",
         name: "employeeChoice",
         message: "Which employee would you like to change their role to?",
-        choices: employeeList
+        choices: employees
       },
       {
         type: "input",
@@ -222,7 +229,7 @@ function updateEmployeeRole() {
         message: "What role would you like to update this employee to? (Choose 1-4)",
       },
     ]).then((answer) => {
-        const updateEmployee = `UPDATE employee SET role_id= ${answer.roleUpdate}`;
+        const updateEmployee = `UPDATE employees SET role_id= ${answer.roleUpdate}`;
         connection.query(
             updateEmployee,
         (err, res) => {
@@ -235,6 +242,7 @@ function updateEmployeeRole() {
         }
         );
     });
+});
 }
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
