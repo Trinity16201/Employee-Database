@@ -30,3 +30,5 @@ Email: Trinity16201@gmail.com
 
 Walk through video:
 
+[Employee-Tracker.webm](https://github.com/Trinity16201/Employee-Database/assets/142117870/dc242432-7ffb-4847-b2cb-60d7a3f5c1ba)
+
